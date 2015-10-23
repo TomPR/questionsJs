@@ -31,3 +31,80 @@
 	display: none;
 }
 #toTop .fa {margin-right: 5px;}
+
+
+
+/* Page */
+html {
+	font-size: 100%;
+}
+body {
+	margin: 0;
+	padding: 10px 20px;
+	color: black;
+	background: white;
+	color: #F0E39E;
+	background: #181A12; /* Voir -> Note 1 ci-dessous */
+}
+
+/* Links */
+a {
+	color: mediumblue;
+	text-decoration: underline;
+	color: #6495ED;
+}
+
+/* Header */
+#header {
+	background: #191970;
+}
+
+/* Navigation */
+#navigation {
+	background: #6495ED;
+}
+#navigation a {
+	color: #FF6533;
+}
+
+/* Content */
+#content {
+	color: #363B29;
+	background: #ADD8E6;
+}
+
+/* Footer */
+#footer {
+	color: #E6A948;
+}
+
+/* --- POSITIONN --- */
+
+/* Page */
+body {
+	padding: 0; /* -> 2 */
+}
+
+/* Header */
+#header {
+	padding: 15px 20px 10px 20px;
+}
+
+/* Navigation */
+#navigation {
+	padding: 12px 15px;
+}
+
+/* Content */
+#content {
+	padding: 10px 20px;
+}
+#content > :first-child {
+	margin-top: 10px;
+}
+
+/* Footer */
+#footer {
+	padding: 15px 20px;
+	font-size: .85em;
+}
