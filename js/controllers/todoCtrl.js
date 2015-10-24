@@ -31,8 +31,8 @@ if (!roomId || roomId.length === 0) {
 }
 
 // TODO: Please change this URL for your app
-//var firebaseURL = "https://classquestion.firebaseio.com/";
-var firebaseURL = "https://comp3111-goodkarma.firebaseio.com/";
+var firebaseURL = "https://questionjs-datetime.firebaseio.com/";
+
 
 $scope.roomId = roomId;
 var url = firebaseURL + roomId + "/questions/";
@@ -61,8 +61,51 @@ $scope.$watchCollection('todos', function () {
 			remaining++;
 		}
 
-		// set time
-		todo.dateString = new Date(todo.timestamp).toString();
+		// set time - original
+		//todo.dateString = new Date(todo.timestamp).toString();
+		
+		// display time in terms of "how long ago". Note: AngularJs generates timestamp in terms of milliseconds.
+		// Unix Time format
+		// seconds in a minute: 60
+		// seconds in an hour: 3600
+		// seconds in a day: 86400
+		// seconds in a week: 604800
+		// seconds in a month: 2629743 (30.44 days)
+		// seconds in a year: 31556926 (365.24 days)
+		
+		// Get difference between current time and message timestamp in seconds
+		var current_time = new Date().getTime();
+		var timediff_sec_original = ~~((current_time - todo.timestamp)/1000);
+		//var timediff_sec_original = (Date().getTime() - todo.timestamp)/1000;
+		var timediff_sec = timediff_sec_original;
+		
+		// Get number of years, months, weeks, days, hours, minutes, and finally seconds
+		// ~~ is double bitwise NOT, a quick way to convert the answer to integer.
+		var num_years = ~~(timediff_sec / 31556926);
+		timediff_sec = timediff_sec % 31556926;
+		var num_months = ~~(timediff_sec / 2629743);
+		timediff_sec = timediff_sec % 2629743;
+		var num_weeks = ~~(timediff_sec / 604800);
+		timediff_sec = timediff_sec % 604800;
+		var num_days = ~~(timediff_sec / 86400);
+		timediff_sec = timediff_sec % 86400;
+		var num_hours = ~~(timediff_sec / 3600);
+		timediff_sec = timediff_sec % 3600;
+		var num_minutes = ~~(timediff_sec / 60);
+		timediff_sec = timediff_sec % 60;
+		var num_seconds = timediff_sec;
+		
+		// Parse the results and store in a todo.dateString; skeleton code passes it to questions.html for display.
+		/*todo.dateString = "Posted " + num_years.toString() + " years " + num_months.toString() + " months " 
+						+ num_weeks.toString() + " weeks " + num_days.toString() + " days " 
+						+ num_hours.toString() + " hours " + num_minutes.toString() + " minutes " 
+						+ num_seconds.toString() + " seconds ago";*/
+		todo.dateString = num_years.toString() + " years " + num_months.toString() + " months " 
+						+ num_weeks.toString() + " weeks " + num_days.toString() + " days " 
+						+ num_hours.toString() + " hours " + num_minutes.toString() + " minutes " 
+						+ num_seconds.toString() + " seconds";
+		
+		// Original
 		todo.tags = todo.wholeMsg.match(/#\w+/g);
 
 		todo.trustedDesc = $sce.trustAsHtml(todo.linkedDesc);
@@ -208,7 +251,7 @@ $scope.increaseMax = function () {
 	}
 };
 
-$scope.toTop = function toTop() {
+$scope.toTop =function toTop() {
 	$window.scrollTo(0,0);
 };
 
