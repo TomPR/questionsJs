@@ -31,8 +31,8 @@ if (!roomId || roomId.length === 0) {
 }
 
 // TODO: Please change this URL for your app
-var firebaseURL = "https://classquestion.firebaseio.com/";
-
+//var firebaseURL = "https://classquestion.firebaseio.com/";
+var firebaseURL = "https://comp3111-goodkarma.firebaseio.com/";
 
 $scope.roomId = roomId;
 var url = firebaseURL + roomId + "/questions/";
@@ -208,7 +208,7 @@ $scope.increaseMax = function () {
 	}
 };
 
-$scope.toTop =function toTop() {
+$scope.toTop = function toTop() {
 	$window.scrollTo(0,0);
 };
 
