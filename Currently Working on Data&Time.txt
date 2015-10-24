@@ -1,0 +1,4 @@
+Currently Working on Date and Time.
+- Thomas & Bing Yen
+
+http://www.angulartutorial.net/2014/04/date-filtering-and-formatting-in.html
