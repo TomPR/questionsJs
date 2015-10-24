@@ -34,11 +34,6 @@ body {
   text-align: center;
   text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
-body {
-  background-image:url(../img/home.jpg);
-  background-repeat:no-repeat;
-  background-size:100% 100%;
-}
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
 .site-wrapper {
@@ -58,18 +53,9 @@ body {
   margin-left: auto;
 }
 
-.cover-heading {
-  position: relative;
-  bottom: 50px;
-}
-
 /* Padding for spacing */
 .inner {
   padding: 30px;
-}
-
-.inner2 {
-  position: center bottom;
 }
 
 
