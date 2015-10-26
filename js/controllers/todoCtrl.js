@@ -101,6 +101,8 @@ $scope.$watchCollection('todos', function () {
 				{
 					todo.dateString += "s"; // More than 1 unit, use plural by adding 's'. Coincidentally, no special cases for the timewords.
 				}
+				
+				break;
 			}
 		}
 		
