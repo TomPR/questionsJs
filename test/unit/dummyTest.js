@@ -36,5 +36,23 @@ describe('controllers unit test', function(){
     var results = scope.getFirstAndRestSentence("Hello? This is Sung");
     expect(results[0]).toEqual('Hello?');
   }));
+  
+  it('setFirstAndRestSentence Dummy2', inject(function($rootScope, $controller) {
+    scope = $rootScope.$new();
+    var ctrl = $controller('MyCtrl1', {
+      $scope : scope
+    });
+    var results = scope.getFirstAndRestSentence("Hello? This is Bing.");
+    expect(results[0]).toEqual('Hello?');
+  }));
+  
+  it('setFirstAndRestSentence Dummy2', inject(function($rootScope, $controller) {
+    scope = $rootScope.$new();
+    var ctrl = $controller('MyCtrl1', {
+      $scope : scope
+    });
+    var results = scope.getFirstAndRestSentence("Hello This is Bing");
+    expect(results[0]).toEqual('Hello This is Bing');
+  }));
 
 });
