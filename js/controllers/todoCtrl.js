@@ -102,10 +102,9 @@ $scope.$watchCollection('todos', function () {
 					todo.dateString += "s"; // More than 1 unit, use plural by adding 's'. Coincidentally, no special cases for the timewords.
 				}
 				
-				todo.dateString += ",";
+				break;
 			}
 		}
-		todo.dateString = todo.dateString.substring(0, todo.dateString.length - 1); // Remove the trailing comma after the word "second(s)".
 		
 		// Original
 		todo.tags = todo.wholeMsg.match(/#\w+/g);
