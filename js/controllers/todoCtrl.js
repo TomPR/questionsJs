@@ -95,7 +95,7 @@ $scope.$watchCollection('todos', function () {
 			
 			if (time_numerator > 0)
 			{
-				todo.dateString += " " + time_numerator.toString() + " " + timeword[i]; // Javascript strings are mutable, concatentate with '+' operator.
+				todo.dateString += time_numerator.toString() + " " + timeword[i]; // Javascript strings are mutable, concatentate with '+' operator.
 				
 				if (time_numerator > 1)
 				{
