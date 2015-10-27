@@ -25,9 +25,9 @@
 
 
 <body ng-controller="TodoCtrl">
-	
+
 	<div id="global">
-		
+
 		<div id="header">
 			<div class="row">
 			  <div class="col-sm-4"><a style="margin-left: 20px" href="index.html">< Back to the main page</a></div>
@@ -35,13 +35,13 @@
 			  <div class="col-sm-2"></div>
 			  <div class="col-sm-2"><button ng-hide="$authData" class="btn btn-primary left" type="button" ng-click="FBLogin()">Want Admin?</button></div>
 			</div>
-			
+
 			<!-- after login -->
 			<img ng-show="$authData" src="https://graph.facebook.com/{{$authData.facebook.id}}/picture/?type=square&return_ssl_resources=1" alt="{{name}}" />
 			{{$authData.facebook.displayName}}
 			<button ng-show="$authData" class="btn btn-primary left" type="button" ng-click="FBLogout()">Logout</button>
 		</div>
-		
+
 		<div id="navigation">
 			<div class="row">
 			<div class="col-sm-1"></div>
@@ -49,16 +49,17 @@
 				placeholder="Search your question, or post it if it's not already posted"
 				ng-model="input.wholeMsg" autofocus></textarea></div>
 			<div class="col-sm-1"><span class="input-group-btn">
+					<button class="btn btn-default" type="button" ng-click="addImage()">Insert Images</button>
 					<button class="btn btn-default" type="button" ng-click="addTodo()">Ask</button>
 				</span></div>
 			<div class="col-sm-1"></div>
 					<!--
 					<form id="todo-form" ng-submit="addTodo()">
 				-->
-			
+
 			</div>
 		</div>
-		
+
 		<div id="content">
 			<div class="list-group" id="todo-list" style="margin-left:40px ; margin-right:40px">
 				<span class="list-group-item" ng-repeat="todo in todos | filter:input | questionFilter:maxQuestion" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
@@ -87,7 +88,7 @@
 				class="pull-right btn btn-default glyphicon glyphicon-arrow-down"
 				type="button" ng-click="increaseMax()"> Show more</button>
 				-->
-				
+
 				<!--
 				<a ng-class="{selected: location.path() == '/newechos'}" class="btn btn-primary" href="#/newechos">New Echos</a>
 				<a ng-class="{selected: location.path() == '/tags'}" class="btn btn-success" href="#/tags">Tags</a>
@@ -95,16 +96,16 @@
 				<a ng-class="{selected: location.path() == '/about'}" class="btn btn-warning" href="#/about">About</a>
 				-->
 		</div>
-		
+
 		<div id="footer">
 			<div class="row">
 				<div class="col-sm-6"><p style="margin-left:50px"><strong>Share room url: {{absurl}}</strong> &nbsp;</p></div>
 				<div class="col-sm-6"><p id="copyright" style="text-align:right ; margin-right:50px">GoodKarma &copy; Fall 2015 <a href="http://www.comp3111.xyz/">comp3111.xyz</a></p></div>
 			</div>
 		</div>
-	
+
 	</div>
-	
+
 
 <!-- Autolink from https://github.com/gregjacobs/Autolinker.js> -->
 <script src="js/lib/Autolinker.min.js"></script>

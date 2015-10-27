@@ -37,6 +37,7 @@ var firebaseURL = "https://comp3111-goodkarma.firebaseio.com/";
 $scope.roomId = roomId;
 var url = firebaseURL + roomId + "/questions/";
 var echoRef = new Firebase(url);
+var images = "";
 
 var query = echoRef.orderByChild("order");
 // Should we limit?
@@ -63,7 +64,7 @@ $scope.$watchCollection('todos', function () {
 
 		// set time - original
 		//todo.dateString = new Date(todo.timestamp).toString();
-		
+
 		/* display time in terms of "how long ago". Note: AngularJs generates timestamp in terms of milliseconds. */
 		// Get difference between current time and message timestamp in seconds
 		var current_time = new Date().getTime();
@@ -73,7 +74,7 @@ $scope.$watchCollection('todos', function () {
 		{
 			timediff_sec += 1; // Minimum of 1 second, so won't display "Posted 0 seconds ago", and easier to for-loop the code.
 		}
-		
+
 		// Parse the results and store in a todo.dateString; skeleton code passes it to questions.html for display.
 		// Unix Time format
 		// seconds in a minute: 60
@@ -84,7 +85,7 @@ $scope.$watchCollection('todos', function () {
 		// seconds in a year: 31556926 (365.24 days)
 		var unix_time_unit = [31556926, 2629743, 604800, 86400, 3600, 60, 1];
 		var timeword = ["year", "month", "week", "day", "hour", "minute", "second"];
-		
+
 		// Get number of years, months, weeks, days, hours, minutes, and seconds.
 		todo.dateString = ""; // Original code passes todo.dateString to questions.html for display.
 		for (var i = 0; i < 7; i++)
@@ -92,20 +93,20 @@ $scope.$watchCollection('todos', function () {
 			// Divide the time difference by unix_time_unit for numerator, then modulo for remainder.
 			var time_numerator = ~~(timediff_sec / unix_time_unit[i]); // ~~ is double bitwise NOT, a quick way to convert the answer to integer.
 			timediff_sec %= unix_time_unit[i];
-			
+
 			if (time_numerator > 0)
 			{
 				todo.dateString += time_numerator.toString() + " " + timeword[i]; // Javascript strings are mutable, concatentate with '+' operator.
-				
+
 				if (time_numerator > 1)
 				{
 					todo.dateString += "s"; // More than 1 unit, use plural by adding 's'. Coincidentally, no special cases for the timewords.
 				}
-				
+
 				break;
 			}
 		}
-		
+
 		// Original
 		todo.tags = todo.wholeMsg.match(/#\w+/g);
 
@@ -151,7 +152,7 @@ $scope.addTodo = function () {
 
 	var firstAndLast = $scope.getFirstAndRestSentence(newTodo);
 	var head = firstAndLast[0];
-	var desc = firstAndLast[1];
+	var desc = images + firstAndLast[1];
 
 	$scope.todos.$add({
 		wholeMsg: newTodo,
@@ -167,7 +168,15 @@ $scope.addTodo = function () {
 	});
 	// remove the posted question in the input
 	$scope.input.wholeMsg = '';
+	images = "";
 };
+
+// add image function
+$scope.addImage = function (){
+	var imageUrl = prompt("Please insert images url", "");
+	if (imageUrl != "")
+		images += "<img src=" + imageUrl + "><br>";
+}
 
 $scope.editTodo = function (todo) {
 	$scope.editedTodo = todo;
