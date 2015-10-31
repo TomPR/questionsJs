@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" ng-app="todomvc" scroll data-framework="firebase">
-<head>
+<head ng-controller="TodoCtrl">
 	<meta charset="utf-8">
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +13,7 @@
 	<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
 	<meta http-equiv="pragma" content="no-cache" />
 
-	<title>Question Room: {{roomId}}</title>
+	<title>Room: {{roomId}}</title>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -49,7 +49,7 @@
 				placeholder="Search your question, or post it if it's not already posted"
 				ng-model="input.wholeMsg" autofocus></textarea></div>
 			<div class="col-sm-1"><span class="input-group-btn" style="text-align:center">
-					<button class="btn btn-default" type="button" style="width:150px" ng-click="addImage()"><span class="glyphicon glyphicon-paperclip"></span> Insert Images</button>
+					<button class="btn btn-default" type="button" style="width:150px" id="addImage"><span class="glyphicon glyphicon-paperclip"></span> Insert Images</button>
 					</br>
 					<button class="btn btn-primary" type="button" style="width:150px" ng-click="addTodo()">Ask</button>
 				</span></div>
@@ -121,6 +121,12 @@
 <!-- Autolink from https://github.com/gregjacobs/Autolinker.js> -->
 <script src="js/lib/Autolinker.min.js"></script>
 
+<!-- jquery -->
+<script src="js/lib/jquery.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="js/lib/bootstrap.min.js"></script>
+
 <!-- 2.2.2 -->
 <script src="js/lib/firebase.js"></script>
 <script src="js/lib/angular.min.js"></script>
@@ -129,11 +135,14 @@
 <!-- Ng storage 0.3.6  -->
 <script src="js/lib/ngStorage.min.js"></script>
 
+<script src="js/lib/bootbox.min.js"></script>
+
 <script src="js/app.js"></script>
 <script src="js/filters/questionFilter.js"></script>
 <script src="js/controllers/todoCtrl.js"></script>
 <script src="js/directives/todoFocus.js"></script>
 <script src="js/directives/todoBlur.js"></script>
 <script src="js/directives/todoEscape.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

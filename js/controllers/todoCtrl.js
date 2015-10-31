@@ -6,6 +6,8 @@
 * - retrieves and persists the model via the $firebaseArray service
 * - exposes the model to the template and provides event handlers
 */
+var images = "";
+
 todomvc.controller('TodoCtrl',
 ['$scope', '$location', '$firebaseArray', '$sce', '$localStorage', '$window',
 function ($scope, $location, $firebaseArray, $sce, $localStorage, $window) {
@@ -37,7 +39,6 @@ var firebaseURL = "https://comp3111-goodkarma.firebaseio.com/";
 $scope.roomId = roomId;
 var url = firebaseURL + roomId + "/questions/";
 var echoRef = new Firebase(url);
-var images = "";
 
 var query = echoRef.orderByChild("order");
 // Should we limit?
@@ -170,13 +171,6 @@ $scope.addTodo = function () {
 	$scope.input.wholeMsg = '';
 	images = "";
 };
-
-// add image function
-$scope.addImage = function (){
-	var imageUrl = prompt("Please insert images url", "");
-	if (imageUrl != "")
-		images += "<img src=" + imageUrl + "><br>";
-}
 
 $scope.editTodo = function (todo) {
 	$scope.editedTodo = todo;
