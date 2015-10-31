@@ -30,10 +30,10 @@
 
 		<div id="header">
 			<div class="row">
-			  <div class="col-sm-4"><a style="margin-left: 20px" href="index.html">< Back to the main page</a></div>
-			  <div class="col-sm-4"><font size="6">Welcome to Room {{roomId}}!</font>&nbsp;</div>
-			  <div class="col-sm-2"></div>
-			  <div class="col-sm-2"><button ng-hide="$authData" class="btn btn-primary left" type="button" ng-click="FBLogin()">Want Admin?</button></div>
+			  <div class="col-sm-3"><a style="margin-left: 20px" href="index.html">< Back to the main page</a></div>
+			  <div class="col-sm-6" style="text-align:center"><font size="6">Welcome to Room </font><font size="6" color="yellow"  style="text-transform: uppercase">{{roomId}}</font><font size="6">!</font>&nbsp;</div>
+			  <div class="col-sm-1"></div>
+			  <div class="col-sm-1" style="text-align:center"><button ng-hide="$authData" class="btn btn-primary left" type="button" style="width:150px" ng-click="FBLogin()">Want Admin?</button></div>
 			</div>
 
 			<!-- after login -->
@@ -48,9 +48,10 @@
 			<div class="col-sm-9"><textarea type="text" id="new-todo" class="form-control" style="resize:vertical"
 				placeholder="Search your question, or post it if it's not already posted"
 				ng-model="input.wholeMsg" autofocus></textarea></div>
-			<div class="col-sm-1"><span class="input-group-btn">
-					<button class="btn btn-default" type="button" ng-click="addImage()">Insert Images</button>
-					<button class="btn btn-default" type="button" ng-click="addTodo()">Ask</button>
+			<div class="col-sm-1"><span class="input-group-btn" style="text-align:center">
+					<button class="btn btn-default" type="button" style="width:150px" ng-click="addImage()"><span class="glyphicon glyphicon-paperclip"></span> Insert Images</button>
+					</br>
+					<button class="btn btn-primary" type="button" style="width:150px" ng-click="addTodo()">Ask</button>
 				</span></div>
 			<div class="col-sm-1"></div>
 					<!--
@@ -61,9 +62,10 @@
 		</div>
 
 		<div id="content">
-			<div class="list-group" id="todo-list" style="margin-left:40px ; margin-right:40px">
-				<span class="list-group-item" ng-repeat="todo in todos | filter:input | questionFilter:maxQuestion" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
-					<h4 class="list-group-item-heading" ng-switch on="todo.headLastChar">
+			<div id="todo-list" style="margin-left:40px ; margin-right:40px">
+				<span class="list-group-item" style="margin-bottom:10px" ng-repeat="todo in todos | filter:input | questionFilter:maxQuestion" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
+					<div style="margin-bottom:20px">
+					<h4 class="list-group-item-heading" style="margin-bottom:10px" ng-switch on="todo.headLastChar">
 						<span class="label label-danger" ng-show="todo.new">New</span>
 						<span class="badge">{{todo.echo}}</span>
 						<!-- switch -->
@@ -71,13 +73,22 @@
 						<span ng-switch-when="!" class="glyphicon glyphicon-ice-lolly"></span>
 						<span ng-class="{completed: todo.completed}">{{todo.head}}</span>
 					</h4>
-					<p class="list-group-item-text"><span ng-bind-html="todo.trustedDesc"></span><br> Posted {{todo.dateString}} ago
-						<span ng-show="todo.tags">tags: {{todo.tags}}</span></p>
-
-						<button class="btn btn-default btn-xs glyphicon glyphicon-hand-up" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]">Like</button>
+					<span ng-bind-html="todo.trustedDesc"></span>
+					</div>
+					<div class="row" style="height:25px ; background:#DCDCDC">
+					<div class="col-sm-6">
+					<p class="list-group-item-text" style="font-style:italic">Posted {{todo.dateString}} ago
+						<span ng-show="todo.tags">tags: {{todo.tags}}</span>
+					</p>
+					</div>
+					<div class="col-sm-6" style="text-align:right ; margin-bottom:1px">
+						<button class="btn btn-default btn-xs glyphicon glyphicon-thumbs-up" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]">Like</button>
+						<button class="btn btn-default btn-xs glyphicon glyphicon-pencil" ng-click="">Comment</button>
 						<button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-check" ng-click="toggleCompleted(todo)">Toggle Completed</button>
 						&nbsp;
 						<button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-trash" aria-hidden="true" ng-click="removeTodo(todo)">Del</button>
+					</div>
+					</div>
 				</span>
 			</div>
 
