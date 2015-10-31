@@ -73,6 +73,17 @@ a {
 	background: #ADD8E6;
 }
 
+#content img{
+	max-width: 80%;
+	display: block;
+	margin: 0 auto;
+}
+
+.list-group-item{
+	border: 3px solid #111111;
+	border-radius: 15px;
+}
+
 /* Footer */
 #footer {
 	color: #E6A948;
