@@ -56,12 +56,12 @@ a {
 
 /* Header */
 #header {
-	background: #191970;
+	background: #00B7CE;
 }
 
 /* Navigation */
 #navigation {
-	background: #6495ED;
+	background: #484A47;
 }
 #navigation a {
 	color: #FF6533;
@@ -70,7 +70,7 @@ a {
 /* Content */
 #content {
 	color: #363B29;
-	background: #ADD8E6;
+	background: #DCDCDC;
 }
 
 /* Footer */

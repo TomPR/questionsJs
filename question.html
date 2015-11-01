@@ -30,8 +30,8 @@
 
 		<div id="header">
 			<div class="row">
-			  <div class="col-sm-3"><a style="margin-left: 20px" href="index.html">< Back to the main page</a></div>
-			  <div class="col-sm-6" style="text-align:center"><font size="6">Welcome to Room </font><font size="6" color="yellow"  style="text-transform: uppercase">{{roomId}}</font><font size="6">!</font>&nbsp;</div>
+			  <div class="col-sm-3"><a style="color:white ; text-decoration:none"><</a><a style="margin-left: 20px ; color:white" href="index.html">Back to the main page</a></div>
+			  <div class="col-sm-6" style="text-align:center"><font size="6" color="white">Welcome to Room </font><font size="6" color="#484A47"  style="text-transform: uppercase">{{roomId}}</font><font size="6" color="white">!</font>&nbsp;</div>
 			  <div class="col-sm-1"></div>
 			  <div class="col-sm-1" style="text-align:center"><button ng-hide="$authData" class="btn btn-primary left" type="button" style="width:150px" ng-click="FBLogin()">Want Admin?</button></div>
 			</div>
@@ -75,7 +75,7 @@
 					</h4>
 					<span ng-bind-html="todo.trustedDesc"></span>
 					</div>
-					<div class="row" style="height:25px ; background:#DCDCDC">
+					<div class="row" style="height:25px ; background:#C0C0C0">
 					<div class="col-sm-6">
 					<p class="list-group-item-text" style="font-style:italic">Posted {{todo.dateString}} ago
 						<span ng-show="todo.tags">tags: {{todo.tags}}</span>
