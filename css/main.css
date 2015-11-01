@@ -94,6 +94,7 @@ a {
 /* Page */
 body {
 	padding: 0; /* -> 2 */
+	font-family: 'Muli', sans-serif;
 }
 
 /* Header */
