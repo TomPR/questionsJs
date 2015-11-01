@@ -144,9 +144,9 @@ $scope.calculateTimestamp = function ($timestamp){
 	//var timediff_sec_original = ~~((current_time - $timestamp)/1000); // ~~ is double bitwise NOT, a quick way to convert the answer to integer.
 	//var timediff_sec = timediff_sec_original;
 	var timediff_sec = ~~((current_time - $timestamp)/1000); // ~~ is double bitwise NOT, a quick way to convert the answer to integer.
-	if (timediff_sec == 0)
+	if (timediff_sec < 1)
 	{
-		timediff_sec += 1; // Minimum of 1 second, so won't display "Posted 0 seconds ago", and easier to for-loop the code.
+		timediff_sec = 1; // Minimum of 1 second, so won't display "Posted 0 seconds ago", and easier to for-loop the code.
 	}
 
 	// Parse the results and store in dateString.
