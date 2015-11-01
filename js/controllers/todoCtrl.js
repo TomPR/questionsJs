@@ -62,52 +62,10 @@ $scope.$watchCollection('todos', function () {
 			remaining++;
 		}
 
-		// set time - original
-		//todo.dateString = new Date(todo.timestamp).toString();
+		// set time
+		//todo.dateString = new Date(todo.timestamp).toString(); // Original
+		todo.dateString = $scope.calculateTimestamp(todo.timestamp); // GoodKarma. Skeleton code passes todo.dateString to questions.html for display.
 
-		/* display time in terms of "how long ago". Note: AngularJs generates timestamp in terms of milliseconds. */
-		// Get difference between current time and message timestamp in seconds
-		var current_time = new Date().getTime();
-		var timediff_sec_original = ~~((current_time - todo.timestamp)/1000); // ~~ is double bitwise NOT, a quick way to convert the answer to integer.
-		var timediff_sec = timediff_sec_original;
-		if (timediff_sec == 0)
-		{
-			timediff_sec += 1; // Minimum of 1 second, so won't display "Posted 0 seconds ago", and easier to for-loop the code.
-		}
-
-		// Parse the results and store in a todo.dateString; skeleton code passes it to questions.html for display.
-		// Unix Time format
-		// seconds in a minute: 60
-		// seconds in an hour: 3600
-		// seconds in a day: 86400
-		// seconds in a week: 604800
-		// seconds in a month: 2629743 (30.44 days)
-		// seconds in a year: 31556926 (365.24 days)
-		var unix_time_unit = [31556926, 2629743, 604800, 86400, 3600, 60, 1];
-		var timeword = ["year", "month", "week", "day", "hour", "minute", "second"];
-
-		// Get number of years, months, weeks, days, hours, minutes, and seconds.
-		todo.dateString = ""; // Original code passes todo.dateString to questions.html for display.
-		for (var i = 0; i < 7; i++)
-		{
-			// Divide the time difference by unix_time_unit for numerator, then modulo for remainder.
-			var time_numerator = ~~(timediff_sec / unix_time_unit[i]); // ~~ is double bitwise NOT, a quick way to convert the answer to integer.
-			timediff_sec %= unix_time_unit[i];
-
-			if (time_numerator > 0)
-			{
-				todo.dateString += time_numerator.toString() + " " + timeword[i]; // Javascript strings are mutable, concatentate with '+' operator.
-
-				if (time_numerator > 1)
-				{
-					todo.dateString += "s"; // More than 1 unit, use plural by adding 's'. Coincidentally, no special cases for the timewords.
-				}
-
-				break;
-			}
-		}
-
-		// Original
 		todo.tags = todo.wholeMsg.match(/#\w+/g);
 
 		todo.trustedDesc = $sce.trustAsHtml(todo.linkedDesc);
@@ -176,7 +134,53 @@ $scope.addImage = function (){
 	var imageUrl = prompt("Please insert images url", "");
 	if (imageUrl != "")
 		images += "<img src=" + imageUrl + "><br>";
-}
+};
+
+// Calculate "how-long-ago" timestamp
+$scope.calculateTimestamp = function ($timestamp){
+	/* display time in terms of "how long ago". Note: AngularJs generates timestamp in terms of milliseconds. */
+	// Get difference between current time and message timestamp in seconds
+	var current_time = new Date().getTime();
+	//var timediff_sec_original = ~~((current_time - $timestamp)/1000); // ~~ is double bitwise NOT, a quick way to convert the answer to integer.
+	//var timediff_sec = timediff_sec_original;
+	var timediff_sec = ~~((current_time - $timestamp)/1000); // ~~ is double bitwise NOT, a quick way to convert the answer to integer.
+	if (timediff_sec == 0)
+	{
+		timediff_sec += 1; // Minimum of 1 second, so won't display "Posted 0 seconds ago", and easier to for-loop the code.
+	}
+
+	// Parse the results and store in dateString.
+	// Unix Time format
+	// seconds in a minute: 60
+	// seconds in an hour: 3600
+	// seconds in a day: 86400
+	// seconds in a week: 604800
+	// seconds in a month: 2629743 (30.44 days)
+	// seconds in a year: 31556926 (365.24 days)
+	var unix_time_unit = [31556926, 2629743, 604800, 86400, 3600, 60, 1];
+	var timeword = ["year", "month", "week", "day", "hour", "minute", "second"];
+
+	// Get number of years, months, weeks, days, hours, minutes, and seconds.
+	var dateString = ""; // Original code passes todo.dateString to questions.html for display.
+	for (var i = 0; i < 7; i++)
+	{
+		// Divide the time difference by unix_time_unit for numerator, then modulo for remainder.
+		var time_numerator = ~~(timediff_sec / unix_time_unit[i]); // ~~ is double bitwise NOT, a quick way to convert the answer to integer.
+		timediff_sec %= unix_time_unit[i];
+		if (time_numerator > 0)
+		{
+			dateString += time_numerator.toString() + " " + timeword[i]; // Javascript strings are mutable, concatentate with '+' operator.
+			if (time_numerator > 1)
+			{
+				dateString += "s"; // More than 1 unit, use plural by adding 's'. Coincidentally, no special cases for the timewords.
+			}
+
+			break;
+		}
+	}
+	
+	return dateString;
+};
 
 $scope.editTodo = function (todo) {
 	$scope.editedTodo = todo;
