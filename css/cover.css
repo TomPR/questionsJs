@@ -35,7 +35,7 @@ body {
   text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 body {
-  background-image:url(../img/home.jpg);
+  background-image:url(../img/home2.jpg);
   background-repeat:no-repeat;
   background-size:100% 100%;
 }
@@ -76,6 +76,7 @@ body {
 /*
  * Header
  */
+ 
 .masthead-brand {
   margin-top: 10px;
   margin-bottom: 10px;

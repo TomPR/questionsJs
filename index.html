@@ -35,9 +35,10 @@
 				</div>
 
 				<div class="inner cover">
-					<h1 class="cover-heading">Ask More Questions!</h1>
+					<h1 class="cover-heading" style="font-family:Verdana ; font-weight:bold">Ask More Questions!</h1>
 					<p class="lead">This totally anonymous and real-time updating question moderated system permits students to ask more questions in a typical class setting.
 						Simply join a question room using a simple name (such as comp3111).</p>
+						
 						<p class="lead" class="col-md-2 col-md-offset-5">
 							<form name="form" ng-submit="join()" class="navbar-form navbar-left" role="search">
 								<input type="text" name = "input" class="form-control large"
@@ -47,7 +48,7 @@
 								autofocus
 								aria-describedby="sizing-addon1"
 								placeholder="Room name">
-								<a href="#" class="btn btn-lg btn-default"
+								<a href="#" class="btn btn-lg btn-primary"
 								ng-hide="form.input.$error.required || form.input.$error.pattern"
 								ng-click="join()"
 								>Join</a>
@@ -55,8 +56,8 @@
 						</p>
 
 						<div class="alert alert-warning" role="alert" ng-show="form.input.$error.required">
-							Please indicate a room name</div>
-							<div class="alert alert-warning" role="alert" ng-show="form.input.$error.pattern">
+							<<< Please indicate a room name</div>
+							<div class="alert alert-warning" style="color:red" role="alert" ng-show="form.input.$error.pattern">
 								Room name must be a single English word!
 							</div>
 
