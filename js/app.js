@@ -3,6 +3,7 @@
 'use strict';
 
 /**
+<<<<<<< HEAD
  * The main TodoMVC app module
  *
  * @type {angular.Module}
@@ -29,3 +30,10 @@ todomvc.filter('todoFilter', function ($location) {
 		return filtered;
 	};
 });
+=======
+* The main TodoMVC app module
+*
+* @type {angular.Module}
+*/
+var todomvc = angular.module('todomvc', ['firebase', 'ngStorage']);
+>>>>>>> clean
