@@ -132,6 +132,11 @@ $scope.addTodo = function () {
 	images = "";
 };
 
+$scope.editTodo = function (todo) {
+	$scope.editedTodo = todo;
+	$scope.originalTodo = angular.extend({}, $scope.editedTodo);
+};
+
 $scope.addReply = function(todo,response){
     //If empty reply, do nothing
     if (!response.length) {
