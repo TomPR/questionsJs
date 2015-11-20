@@ -161,6 +161,11 @@ $scope.addReply = function(todo,response){
     $scope.replying.active[todo.$id] = false;
 };
 
+$scope.cancelReply = function(todo){
+	$scope.replyBox.replyText[todo.$id] = "";
+	$scope.replying.active[todo.$id] = false;
+}
+
 // add image function
 $scope.addImage = function (){
 	var imageUrl = prompt("Please insert images url", "");
