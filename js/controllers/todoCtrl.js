@@ -146,8 +146,6 @@ $scope.addReply = function(todo,response){
          timestamp: new Date().getTime().toString(),
          echo: 0,
          order: 0,
-         hidden: false,
-         highlighted: false
         }];}
     else{
     	todo.replies.push(
@@ -155,13 +153,23 @@ $scope.addReply = function(todo,response){
          timestamp: new Date().getTime().toString(),
          echo: 0,
          order: 0,
-         hidden: false,
-         highlighted: false
         }
     );}
     $scope.todos.$save(todo);
     $scope.replyBox.replyText[todo.$id] = "";
     $scope.replying.active[todo.$id] = false;
+};
+
+//cancels reply, box closes and clears data
+$scope.cancelReply = function(todo){
+	$scope.replyBox.replyText[todo.$id] = "";
+	$scope.replying.active[todo.$id] = false;
+}
+
+$scope.hideReply = function(todo, reply){
+	$scope.editedTodo = todo;
+	reply.hidden = !reply.hidden;
+	$scope.todos.$save(todo);
 };
 
 $scope.editTodo = function (todo) {
