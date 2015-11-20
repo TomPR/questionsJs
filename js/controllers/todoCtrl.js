@@ -38,6 +38,8 @@ $scope.roomId = roomId;
 var url = firebaseURL + roomId + "/questions/";
 var echoRef = new Firebase(url);
 var images = "";
+$scope.replyBox = {replyText : ""};
+$scope.replying = {active : false};
 
 var query = echoRef.orderByChild("order");
 // Should we limit?
