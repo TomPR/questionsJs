@@ -129,6 +129,38 @@ $scope.addTodo = function () {
 	images = "";
 };
 
+$scope.addReply = function(todo,response){
+    //If empty reply, do nothing
+    if (!response.length) {
+		return;
+	}
+
+    $scope.editedTodo = todo;
+    
+    if(todo.replies == null){
+    	todo.replies= [
+        {head: response,
+         timestamp: new Date().getTime().toString(),
+         echo: 0,
+         order: 0,
+         hidden: false,
+         highlighted: false
+        }];}
+    else{
+    	todo.replies.push(
+        {head: response,
+         timestamp: new Date().getTime().toString(),
+         echo: 0,
+         order: 0,
+         hidden: false,
+         highlighted: false
+        }
+    );}
+    $scope.todos.$save(todo);
+    $scope.replyBox.replyText[todo.$id] = "";
+    $scope.replying.active[todo.$id] = false;
+};
+
 // add image function
 $scope.addImage = function (){
 	var imageUrl = prompt("Please insert images url", "");
