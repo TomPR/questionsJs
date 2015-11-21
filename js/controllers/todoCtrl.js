@@ -38,8 +38,10 @@ $scope.roomId = roomId;
 var url = firebaseURL + roomId + "/questions/";
 var echoRef = new Firebase(url);
 var images = "";
+/**
 $scope.replyBox = {replyText : ""};
 $scope.replying = {active : false};
+**/
 
 var query = echoRef.orderByChild("order");
 // Should we limit?
@@ -125,18 +127,14 @@ $scope.addTodo = function () {
 		tags: "...",
 		echo: 0,
 		order: 0
-		replies: [ ]
+	//	replies: [ ]
 	});
 	// remove the posted question in the input
 	$scope.input.wholeMsg = '';
 	images = "";
 };
 
-$scope.editTodo = function (todo) {
-	$scope.editedTodo = todo;
-	$scope.originalTodo = angular.extend({}, $scope.editedTodo);
-};
-
+/**
 $scope.addReply = function(todo,response){
     //If empty reply, do nothing
     if (!response.length) {
@@ -175,7 +173,7 @@ $scope.hideReply = function(todo, reply){
 	$scope.editedTodo = todo;
 	reply.hidden = !reply.hidden;
 	$scope.todos.$save(todo);
-};
+};**/
 
 $scope.editTodo = function (todo) {
 	$scope.editedTodo = todo;
