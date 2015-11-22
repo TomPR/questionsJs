@@ -6,6 +6,8 @@
 * - retrieves and persists the model via the $firebaseArray service
 * - exposes the model to the template and provides event handlers
 */
+var images = "";
+
 todomvc.controller('TodoCtrl',
 ['$scope', '$location', '$firebaseArray', '$sce', '$localStorage', '$window',
 function ($scope, $location, $firebaseArray, $sce, $localStorage, $window) {
@@ -37,7 +39,6 @@ var firebaseURL = "https://comp3111-goodkarma.firebaseio.com/";
 $scope.roomId = roomId;
 var url = firebaseURL + roomId + "/questions/";
 var echoRef = new Firebase(url);
-var images = "";
 /**
 $scope.replyBox = {replyText : ""};
 $scope.replying = {active : false};
@@ -142,7 +143,7 @@ $scope.addReply = function(todo,response){
 	}
 
     $scope.editedTodo = todo;
-    
+
     if(todo.replies == null){
     	todo.replies= [
         {head: response,
@@ -178,13 +179,6 @@ $scope.hideReply = function(todo, reply){
 $scope.editTodo = function (todo) {
 	$scope.editedTodo = todo;
 	$scope.originalTodo = angular.extend({}, $scope.editedTodo);
-};
-
-// add image function
-$scope.addImage = function (){
-	var imageUrl = prompt("Please insert images url", "");
-	if (imageUrl != "")
-		images += "<img src=" + imageUrl + "><br>";
 };
 
 // Calculate "how-long-ago" timestamp
@@ -229,7 +223,7 @@ $scope.calculateTimestamp = function ($timestamp){
 			break;
 		}
 	}
-	
+
 	return dateString;
 };
 
