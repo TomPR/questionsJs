@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="randoop.plugin.core.launching.gentestsType">
+<listAttribute key="randoop.AVAILABLE_TYPES">
+<listEntry value="Labcomp3111Randoop%3%/Labcomp3111Randoop/src%task1.Node"/>
+</listAttribute>
+<listAttribute key="randoop.CHECKED_TYPES">
+<listEntry value="Labcomp3111Randoop%3%/Labcomp3111Randoop/src%task1.Node"/>
+</listAttribute>
+<listAttribute key="randoop.GRAYED_TYPES"/>
+<stringAttribute key="randoop.PROJECT_NAME" value="Labcomp3111Randoop"/>
+</launchConfiguration>
