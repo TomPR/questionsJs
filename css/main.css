@@ -59,21 +59,28 @@ a {
 	background: #00B7CE;
 }
 
-/* Navigation */
+/* Navigation Menu */
 #navigation {
+	background-color: #484A47;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+/* Question */
+#question {
 	background: #484A47;
 }
-#navigation a {
+#question a {
 	color: #FF6533;
 }
 
-/* Content */
-#content {
+/* Forum = Questions content */
+#forum {
 	color: #363B29;
 	background: #DCDCDC;
 }
 
-#content img{
+#forum img{
 	max-width: 80%;
 	display: block;
 	margin: 0 auto;
@@ -87,13 +94,14 @@ a {
 /* Footer */
 #footer {
 	color: #E6A948;
+	background-color: #484A47;
 }
 
 /* --- POSITIONN --- */
 
 /* Page */
 body {
-	padding: 0; /* -> 2 */
+	padding: 0;
 }
 
 /* Header */
@@ -101,18 +109,71 @@ body {
 	padding: 15px 20px 10px 20px;
 }
 
-/* Navigation */
+/* Navigation Menu */
 #navigation {
-	padding: 12px 15px;
+	width: 18%;
+	float: left;
+}
+
+.defaultNavigation{
+	position: absolute;
+}
+
+.fixNavigation{
+	z-index: 9999;
+	position: fixed;
+	top: 0;
+}
+
+#navigation ul {
+	margin: 0;
+	padding: 20px 10px;
+	list-style: none;
+}
+#navigation a {
+
+	height: 1%;
+	padding: 3px 3px 3px 5px;
+	line-height: 1.5;
+	font-size: .9em;
+	text-decoration: none;
+}
+#navigation p {
+
+	height: 1%;
+	padding: 3px 3px 3px 5px;
+	line-height: 1.5;
+	font-size: .9em;
+	text-decoration: none;
 }
 
 /* Content */
 #content {
+	margin-left: 20%;
+	margin-bottom: 20px;
 	padding: 10px 20px;
 }
 #content > :first-child {
 	margin-top: 10px;
 }
+#content p, #content li {
+	line-height: 1.5;
+}
+
+/* Question */
+#question {
+	padding: 12px 15px;
+}
+
+/* Forum = Questions content */
+#forum {
+	padding: 10px 20px;
+}
+#forum > :first-child {
+	margin-top: 10px;
+}
+
+img { max-width: 800px; max-height: 400px; }
 
 /* Footer */
 #footer {
