@@ -79,6 +79,8 @@
 
 				</div>
 			</div>
+			
+			
 
 			<div id="forum">
 				<div id="todo-list" style="margin-left:40px ; margin-right:40px">
@@ -97,17 +99,48 @@
 						<div class="row" style="height:25px ; background:#C0C0C0">
 						<div class="col-sm-6">
 						<p class="list-group-item-text" style="font-style:italic">Posted {{todo.dateString}} ago
-							<span ng-show="todo.tags">tags: {{todo.tags}}</span>
 						</p>
 						</div>
 						<div class="col-sm-6" style="text-align:right ; margin-bottom:1px">
 							<button class="btn btn-default btn-xs glyphicon glyphicon-thumbs-up" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]">Like</button>
-							<button class="btn btn-default btn-xs glyphicon glyphicon-pencil" ng-click="">Comment</button>
+							<button class="btn btn-default btn-xs glyphicon glyphicon-pencil" ng-click="addComment(todo)">Comment</button>
 							<button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-check" ng-click="toggleCompleted(todo)">Toggle Completed</button>
 							&nbsp;
 							<button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-trash" aria-hidden="true" ng-click="removeTodo(todo)">Del</button>
 						</div>
 						</div>
+						
+						
+						
+						<span class="list-group-item" style="margin-bottom:10px" ng-repeat="comment in todo.comments | filter:input | questionFilter:maxQuestion" ng-class="{completed: comment.completed}">
+							<div style="margin-bottom:20px">
+							<h4 class="list-group-item-heading" style="margin-bottom:10px" ng-switch on="comment.headLastChar">
+								<span class="label label-danger" ng-show="comment.new">New</span>
+								<span class="badge">{{comment.echo}}</span>
+								<!-- switch -->
+								<span ng-switch-when="?" class="glyphicon glyphicon-question-sign"></span>
+								<span ng-switch-when="!" class="glyphicon glyphicon-ice-lolly"></span>
+								<span ng-class="{completed: comment.completed}">{{comment.head}}</span>
+							</h4>
+							<span ng-bind-html="comment.trustedDesc"></span>
+							</div>
+							<div class="row" style="height:25px ; background:#C0C0C0">
+							<div class="col-sm-6">
+							<p class="list-group-item-text" style="font-style:italic">Replied {{comment.dateString}} ago
+							</p>
+							</div>
+							<div class="col-sm-6" style="text-align:right ; margin-bottom:1px">
+							</div>
+							</div>
+						</span>
+						
+						
+						<div class="col-sm-9"><textarea type="text" id="new-todo" class="form-control" style="resize:vertical"
+							placeholder="Type your comment here."
+							ng-model="replyAreas[todo.$id]" autofocus></textarea></div>
+						
+						
+						
 					</span>
 				</div>
 

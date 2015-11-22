@@ -35,6 +35,7 @@ if (!roomId || roomId.length === 0) {
 // TODO: Please change this URL for your app
 //var firebaseURL = "https://classquestion.firebaseio.com/";
 var firebaseURL = "https://comp3111-goodkarma.firebaseio.com/";
+//var firebaseURL = "https://questionsjs-reply.firebaseio.com/";
 
 $scope.roomId = roomId;
 var url = firebaseURL + roomId + "/questions/";
@@ -48,6 +49,8 @@ var query = echoRef.orderByChild("order");
 // Should we limit?
 //.limitToFirst(1000);
 $scope.todos = $firebaseArray(query);
+
+$scope.replyAreas = []; // Used for reply function to differentiate the textareas at the end of each question.
 
 //$scope.input.wholeMsg = '';
 $scope.editedTodo = null;
@@ -74,6 +77,11 @@ $scope.$watchCollection('todos', function () {
 		todo.tags = todo.wholeMsg.match(/#\w+/g);
 
 		todo.trustedDesc = $sce.trustAsHtml(todo.linkedDesc);
+		
+		// Get the DateTime for each comment within todo.
+		todo.comments.forEach(function (comment) {
+			comment.dateString = $scope.calculateTimestamp(comment.timestamp);
+		});
 	});
 
 	$scope.totalCount = total;
@@ -127,13 +135,62 @@ $scope.addTodo = function () {
 		timestamp: new Date().getTime(),
 		tags: "...",
 		echo: 0,
-		order: 0
-	//	replies: [ ]
+		order: 0,
+		comments: []
 	});
 	// remove the posted question in the input
 	$scope.input.wholeMsg = '';
 	images = "";
 };
+
+$scope.addComment = function (todo) {
+	var newComment = $scope.replyAreas[todo.$id].trim();
+	//var newComment = $scope.input.wholeMsg.trim();
+	
+	// No input, so just do nothing
+	if (!newComment.length) {
+		return;
+	}
+
+	var firstAndLast = $scope.getFirstAndRestSentence(newComment);
+	var head = firstAndLast[0];
+	var desc = images + firstAndLast[1];
+
+	if (todo.comments == null) {
+		todo.comments = [{
+			wholeMsg: newComment,
+			head: head,
+			headLastChar: head.slice(-1),
+			desc: desc,
+			linkedDesc: Autolinker.link(desc, {newWindow: false, stripPrefix: false}),
+			completed: false,
+			timestamp: new Date().getTime(),
+			tags: "...",
+			echo: 0,
+			order: 0
+		}]
+	}
+	else {
+		todo.comments.push({
+			wholeMsg: newComment,
+			head: head,
+			headLastChar: head.slice(-1),
+			desc: desc,
+			linkedDesc: Autolinker.link(desc, {newWindow: false, stripPrefix: false}),
+			completed: false,
+			timestamp: new Date().getTime(),
+			tags: "...",
+			echo: 0,
+			order: 0
+		});
+	}
+	$scope.todos.$save(todo);
+	
+	// remove the posted question in the input
+	$scope.replyAreas[todo.$id] = '';
+	//$scope.input.wholeMsg = '';
+	images = "";
+}
 
 /**
 $scope.addReply = function(todo,response){
@@ -242,6 +299,17 @@ $scope.addEcho = function (todo) {
 	// Disable the button
 	$scope.$storage[todo.$id] = "echoed";
 };
+
+/*$scope.addEchoComment = function (comment) {
+	//$scope.editedTodo = todo;
+	comment.echo = comment.echo + 1;
+	// Hack to order using this order.
+	comment.order = comment.order -1;
+	//$scope.todos.$save(todo);
+
+	// Disable the button
+	//$scope.$storage[todo.$id] = "echoed";
+};*/
 
 $scope.doneEditing = function (todo) {
 	$scope.editedTodo = null;
