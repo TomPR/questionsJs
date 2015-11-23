@@ -526,7 +526,7 @@ describe('TodoCtrl', function() {
 		expect(scope.maxQuestion).toEqual(1 + scrollCountDelta);
       });
 	  
-	  /*it('autoscroll', function() {
+	  it('autoscroll', function() {
         var ctrl = controller('TodoCtrl', {
           $scope: scope,
           $location: location,
@@ -538,10 +538,12 @@ describe('TodoCtrl', function() {
 		
 		var scrollEvent = document.createEvent('CustomEvent');
 		scrollEvent.initCustomEvent('scroll', false, false, null);
+		//var scrollEvent = new CustomEvent('scroll');
 		window.document.body.style.minHeight = '9000px';
 		window.document.body.style.minWidth = '9000px';
 		//window.document.body.offsetHeight = '500px';
-		window.scrollTo(0,10000);
+		//window.dispatchEvent( scrollEvent );
+		window.scrollTo(0,900);
 		window.dispatchEvent( scrollEvent );
 		scope.$apply();
 		scope.$digest();
@@ -552,7 +554,7 @@ describe('TodoCtrl', function() {
 		expect(window.document.body.offsetHeight).toEqual(9000);
 		expect(window.innerHeight + window.scrollY >= window.document.body.offsetHeight).toBeTruthy;
 		//window.scrollY = 0;
-      });*/
+      });
 	  
       it('RoomId', function() {
         location.path('/new/path');
