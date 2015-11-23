@@ -34,8 +34,10 @@ if (!roomId || roomId.length === 0) {
 
 // TODO: Please change this URL for your app
 //var firebaseURL = "https://classquestion.firebaseio.com/";
-var firebaseURL = "https://comp3111-goodkarma.firebaseio.com/";
+//var firebaseURL = "https://comp3111-goodkarma.firebaseio.com/";
 //var firebaseURL = "https://questionsjs-reply.firebaseio.com/";
+//var firebaseURL = "https://questionandroidreply.firebaseio.com/";
+var firebaseURL = "https://goodkarma-comp3111.firebaseio.com/";
 
 $scope.roomId = roomId;
 var url = firebaseURL + roomId + "/questions/";
@@ -136,6 +138,9 @@ $scope.addTodo = function () {
 		tags: "...",
 		echo: 0,
 		order: 0,
+		dateString: "1 second",
+		key: null,
+		trustedDesc: "...",
 		comments: []
 	});
 	// remove the posted question in the input
@@ -168,7 +173,10 @@ $scope.addComment = function (todo) {
 			tags: "...",
 			echo: 0,
 			order: 0,
-			dateString: "1 second"
+			dateString: "1 second",
+			key: null,
+			trustedDesc: "...",
+			comments: []
 		}];
 	}
 	else {
@@ -183,7 +191,10 @@ $scope.addComment = function (todo) {
 			tags: "...",
 			echo: 0,
 			order: 0,
-			dateString: "1 second"
+			dateString: "1 second",
+			key: null,
+			trustedDesc: "...",
+			comments: []
 		});
 	}
 	$scope.todos.$save(todo);
