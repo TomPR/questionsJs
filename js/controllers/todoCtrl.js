@@ -167,8 +167,9 @@ $scope.addComment = function (todo) {
 			timestamp: new Date().getTime(),
 			tags: "...",
 			echo: 0,
-			order: 0
-		}]
+			order: 0,
+			dateString: "1 second"
+		}];
 	}
 	else {
 		todo.comments.push({
@@ -181,7 +182,8 @@ $scope.addComment = function (todo) {
 			timestamp: new Date().getTime(),
 			tags: "...",
 			echo: 0,
-			order: 0
+			order: 0,
+			dateString: "1 second"
 		});
 	}
 	$scope.todos.$save(todo);
