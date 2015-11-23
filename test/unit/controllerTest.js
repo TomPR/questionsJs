@@ -96,6 +96,57 @@ describe('TodoCtrl', function() {
         scope.addTodo();
 		expect(scope.input.wholeMsg).toEqual('');
       });
+	  
+	  it('addComment', function() {
+		  var ctrl = controller('TodoCtrl', {
+          $scope: scope,
+          $location: location,
+          $firebaseArray: firebaseArray,
+          $sce: sce,
+          $localStorage: localStorage,
+          $window: window
+        });
+		
+		scope.todos = [
+		{
+			wholeMsg: "Help?",
+			head: "Help?",
+			headLastChar: '?',
+			desc: "",
+			linkedDesc: "",
+			completed: false,
+			timestamp: new Date().getTime(),
+			tags: "...",
+			echo: 0,
+			order: 0,
+			comments: []
+		}];
+		
+		var testtodo = {
+			wholeMsg: "Help?",
+			head: "Help?",
+			headLastChar: '?',
+			desc: "",
+			linkedDesc: "",
+			completed: false,
+			timestamp: new Date().getTime(),
+			tags: "...",
+			echo: 0,
+			order: 0
+		}
+		
+		scope.todos.$save = function(todo) {scope.todos[scope.todos.length] = todo};
+		
+		scope.replyAreas[testtodo.$id] = "";
+		
+		scope.addComment(testtodo);
+		
+		scope.replyAreas[testtodo.$id] = "Test";
+		scope.addComment(testtodo);
+		
+		scope.replyAreas[testtodo.$id] = "Test";
+		scope.addComment(testtodo);
+	  });
 
 	  it('editTodo', function() {
         var ctrl = controller('TodoCtrl', {
@@ -475,7 +526,7 @@ describe('TodoCtrl', function() {
 		expect(scope.maxQuestion).toEqual(1 + scrollCountDelta);
       });
 	  
-	  it('autoscroll', function() {
+	  /*it('autoscroll', function() {
         var ctrl = controller('TodoCtrl', {
           $scope: scope,
           $location: location,
@@ -501,7 +552,7 @@ describe('TodoCtrl', function() {
 		expect(window.document.body.offsetHeight).toEqual(9000);
 		expect(window.innerHeight + window.scrollY >= window.document.body.offsetHeight).toBeTruthy;
 		//window.scrollY = 0;
-      });
+      });*/
 	  
       it('RoomId', function() {
         location.path('/new/path');
